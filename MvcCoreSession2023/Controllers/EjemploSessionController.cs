@@ -66,5 +66,24 @@ namespace MvcCoreSession2023.Controllers
             HttpContext.Session.SetObject("LISTAPERSONAS", personas);
             return View();
         }
+
+        public IActionResult LogIn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult LogIn(string userName)
+        {
+            HttpContext.Session.SetString("USERNAME", userName);
+            ViewData["MENSAJE"] = "Usuario dado de alta correctamente";
+            return View();
+        }
+
+        public IActionResult CerrarSesion()
+        {
+            HttpContext.Session.Remove("USERNAME");
+            return RedirectToAction("Index","Home");
+        }
     }
 }

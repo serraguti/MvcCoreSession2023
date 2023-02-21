@@ -2,7 +2,11 @@
 <h1>Ejemplo Sesion Simple</h1>
 
 <h3>@ViewData["MENSAJE"]</h3>
-
+@if (Context.Session.GetString("USERNAME") != null){
+    <h1 style="color:red">
+        Bienvenido a mi App, @Context.Session.GetString("USERNAME")
+    </h1>
+}
 <form method="post">
     <label>Nombre de usuario:</label>
     <input type="text" name="usuario" class="form-control"/>
