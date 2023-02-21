@@ -1,0 +1,25 @@
+﻿
+<h1>Ejemplo Sesion Simple</h1>
+
+<h3>@ViewData["MENSAJE"]</h3>
+
+<form method="post">
+    <label>Nombre de usuario:</label>
+    <input type="text" name="usuario" class="form-control"/>
+    <button class="btn btn-info" name="accion" value="almacenar">
+        Guardar datos Session
+    </button>
+    <button class="btn btn-dark" name="accion" value="mostrar">
+        Mostrar datos Session
+    </button>
+</form>
+
+<h2 style="color:blue">
+    Número actual: @ViewData["NUMERO"]
+</h2>
+<h2 style="color:red">
+    Usuario actual: @ViewData["USUARIO"]
+</h2>
+<h2 style="color:fuchsia">
+    Hora Session: @ViewData["HORA"]
+</h2>
