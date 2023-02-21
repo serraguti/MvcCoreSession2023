@@ -1,16 +1,39 @@
-﻿@{
+﻿@using MvcCoreSession2023.Helpers
+@{
+    List<Persona> personas =
+                Context.Session.GetObject<List<Persona>>("LISTAPERSONAS");
+}
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-<h2 style="color:blue">
-    Número actual: @Context.Session.GetString("NUMERO")
-</h2>
-<h2 style="color:red">
-    Usuario actual: @Context.Session.GetString("USUARIO")
-</h2>
-<h2 style="color:fuchsia">
-    Hora Session: @Context.Session.GetString("HORA")
-</h2>
+    @if (personas != null)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Edad</th>
+                </tr>
+            </thead>
+            @foreach (Persona p in personas)
+            {
+                <tr>
+                    <td>@p.Nombre</td>
+                    <td>@p.Email</td>
+                    <td>@p.Edad</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <h1 style="color:red">
+            No hay personas en Session
+        </h1>
+    }
 </div>

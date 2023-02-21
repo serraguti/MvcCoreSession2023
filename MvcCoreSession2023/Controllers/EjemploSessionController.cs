@@ -47,6 +47,23 @@ namespace MvcCoreSession2023.Controllers
             //CUANDO PULSE UN BOTON GUARDAMOS UNA PERSONA
             HttpContext.Session.SetObject("PERSONA", persona);
             ViewData["MENSAJE"] = "Persona almacenada en Session";
+            //A CONTINUACION, LO QUE DESEAMOS ES ALMACENAR UN 
+            //CONJUNTO DE PERSONAS
+            //LO PRIMERO QUE NECESITAMOS COMPROBAR ES SI YA
+            //EXISTE ALGUNA PERSONA ALMACENADA DENTRO DE SESSION
+            List<Persona> personas =
+                HttpContext.Session.GetObject<List<Persona>>("LISTAPERSONAS");
+            //COMPROBAMOS SI TENEMOS PERSONAS ALMACENADAS
+            if (personas == null)
+            {
+                //TODAVIA NO HAY NINGUNA PERSONA ALMACENADA
+                //CREAMOS LA COLECCION
+                personas = new List<Persona>();
+            }
+            //AÑADIMOS UNA NUEVA PERSONA A LA COLECCION
+            personas.Add(persona);
+            //ALMACENAMOS LAS PERSONAS EN SESSION
+            HttpContext.Session.SetObject("LISTAPERSONAS", personas);
             return View();
         }
     }
